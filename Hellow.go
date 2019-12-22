@@ -12,8 +12,24 @@ func main() {
 	//simpleIf()
 	//IfElseExample()
 	//switchCase(90)
-}
+	forLoopTest()
 
+}
+func forLoopTest() {
+	var b int = 15
+	var a int
+	numbers := [6]int{1, 2, 3, 5}
+	for a := 0; a < 10; a++ {
+		fmt.Printf("value of a %d\n", a)
+	}
+	for a < b {
+		a++
+		fmt.Printf("value of a : %d\n", a)
+	}
+	for i, x := range numbers {
+		fmt.Printf("value of x %d at %d\n", x, i)
+	}
+}
 func selectStatement() {
 	var c1, c2, c3 chan int
 	var i1, i2 int
