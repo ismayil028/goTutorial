@@ -12,11 +12,79 @@ func main() {
 	//simpleIf()
 	//IfElseExample()
 	//switchCase(90)
-	forLoopTest()
+	//forLoopTest()
+	//nestedLoops()
+	//breakStatement()
+	//continueStatement()
+	//goTo()
+	maxValueTest()
+}
+func maxValueTest() {
+	var a int = 100
+	var b int = 200
+	var ret int
+
+	ret = max(a, b)
+	fmt.Printf("Max Value is %d\n", ret)
+}
+func max(num1, num2 int) int {
+	if num1 > num2 {
+		return num1
+	} else {
+		return num2
+	}
 
 }
+func goTo() {
+	var a int = 10
+
+LOOP:
+	for a <= 20 {
+		if a == 15 {
+			a = a + 1
+			goto LOOP
+		}
+		fmt.Printf("value of a: %d\n", a)
+		a++
+	}
+}
+func continueStatement() {
+	var a int = 10
+	for a <= 20 {
+		if a == 15 {
+			a = a + 1
+			continue
+		}
+		fmt.Printf("value of a %d\n", a)
+		a++
+	}
+}
+func breakStatement() {
+	var a int = 10
+	for a < 20 {
+		fmt.Printf("value of a: %d\n", a)
+		a++
+		if a > 15 {
+			break
+		}
+
+	}
+}
+func nestedLoops() {
+	var i, j int
+	for i = 2; i < 100; i++ {
+		for j = 2; j < (i / j); j++ {
+			if i%j == 0 {
+				break
+			}
+		}
+		if j > (i / j) {
+			fmt.Printf("%d is prime\n", i)
+		}
+	}
+}
 func forLoopTest() {
-	var b int = 15
+	var b = 15
 	var a int
 	numbers := [6]int{1, 2, 3, 5}
 	for a := 0; a < 10; a++ {
@@ -38,7 +106,7 @@ func selectStatement() {
 		fmt.Printf("recieved ", i1, "from c1\n")
 	case c2 <- i2:
 		fmt.Printf("sent ", i2, " to c2\n")
-	case i3, ok := (<-c3):
+	case i3, ok := <-c3:
 		if ok {
 			fmt.Printf("recieved ", i3, " from c3\n")
 		} else {
@@ -51,7 +119,7 @@ func selectStatement() {
 }
 
 func switchCase(mark int) {
-	var grade string = ""
+	var grade = ""
 	switch mark {
 	case 90:
 		grade = "A"
@@ -78,7 +146,7 @@ func switchCase(mark int) {
 	fmt.Printf("Your grade is %s\n", grade)
 }
 func simpleIf() {
-	var a int = 10
+	var a = 10
 
 	if a < 20 {
 		fmt.Printf("a is less than 20\n")
@@ -87,7 +155,7 @@ func simpleIf() {
 }
 
 func IfElseExample() {
-	var a int = 100
+	var a = 100
 	if a < 20 {
 		fmt.Printf("a is less than 20\n")
 	} else {
@@ -117,7 +185,7 @@ func escapeSequences() {
 
 }
 func dynamicTypeDeclaration() {
-	var x float64 = 20.0
+	var x = 20.0
 
 	y := 42
 	fmt.Println(x)
