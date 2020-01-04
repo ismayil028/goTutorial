@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
@@ -17,7 +18,78 @@ func main() {
 	//breakStatement()
 	//continueStatement()
 	//goTo()
-	maxValueTest()
+	//maxValueTest()
+	//callByValueTest()
+	//callByReferenceTest()
+	//funcAsValue()
+
+}
+func functionClosureTest() {
+	//nextNumber here is a function that i as 0
+	nextNumber := getSequence()
+	//so we increase i by 1 and return same
+
+	fmt.Println(nextNumber())
+	fmt.Println(nextNumber())
+	fmt.Println(nextNumber())
+	//so creating new sequence
+	nextNumber1 := getSequence()
+	fmt.Println(nextNumber1())
+	fmt.Println(nextNumber1())
+}
+func getSequence() func() int {
+	i := 0
+	return func() int {
+		i += 1
+		return i
+	}
+}
+
+func funcAsValue() {
+	getSquareRoot := func(x float64) float64 {
+		return math.Sqrt(x)
+	}
+	fmt.Print(getSquareRoot(9))
+}
+func callByReferenceTest() {
+	var a int = 100
+	var b int = 200
+	fmt.Printf("Before swap , value of a : %d\n", a)
+	fmt.Printf("Before swap , value of b : %d\n", b)
+
+	/* calling a function to swap the values.
+	 * &a indicates pointer to a ie. address of variable a and
+	 * &b indicates pointer to b ie. address of variable b.
+	 */
+	swap1(&a, &b)
+	fmt.Printf("After swap , value of a : %d\n", a)
+	fmt.Printf("After swap , value of b : %d\n", b)
+}
+func callByValueTest() {
+	var a int = 100
+	var b int = 200
+	fmt.Printf("Before swap , value of a : %d\n", a)
+	fmt.Printf("Before swap , value of b : %d\n", b)
+
+	swap(a, b)
+	fmt.Printf("After swap , value of a : %d\n", a)
+	fmt.Printf("After swap , value of b : %d\n", b)
+	//It shows that there is no change in the values though they had been changed inside the function.
+}
+func swap(x int, y int) int {
+	var temp int
+	temp = x
+	x = y
+	y = temp
+	return temp
+}
+
+func swap1(x *int, y *int) int {
+	var temp int
+	temp = *x
+	*x = *y
+	*y = temp
+	return temp
 }
 func maxValueTest() {
 	var a int = 100
